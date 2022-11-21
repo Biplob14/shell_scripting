@@ -3,26 +3,26 @@
 echo -e "\n ~~ Bacis scripting syntax ~~ \n"
 
 # VARIABLES
-# Uppercase by convention
-# Letters, numbers, underscores
+Uppercase by convention
+ Letters, numbers, underscores
 NAME="John"
-# echo "My name is $NAME"
-# echo "My name is ${NAME}"
+echo "My name is $NAME"
+echo "My name is ${NAME}"
 
 # USER INPUT
-# read -p "Enter your name: " NAME
-# echo "Hello $NAME, nice to meet you!"
+read -p "Enter your name: " NAME
+echo "Hello $NAME, nice to meet you!"
 
 # ELSE IF STATEMENT
-# if [ "$NAME" == "John" ]
-# then
-#     echo "Welcome John"
-# elif [ "$NAME" == "Jack" ]
-# then
-#     echo "Welcome Jack"
-# else
-#     echo "You are unknown"
-# fi
+if [ "$NAME" == "John" ]
+then
+    echo "Welcome John"
+elif [ "$NAME" == "Jack" ]
+then
+    echo "Welcome Jack"
+else
+    echo "You are unknown"
+fi
 
 # COMPARISON
 ###############
@@ -33,14 +33,14 @@ NAME="John"
 # val1 -lt val2 Returns true if val1 is less than val2
 # val1 -le val2 Returns true if val1 is less than or equal to val2
 ###############
-# NUM1=31
-# NUM2=5
-# if [ "$NUM1" -gt "$NUM2"]
-# then
-#     echo "$NUM1 is greater than $NUM2"
-# else
-#     echo "$NUM1 is less than $NUM2"
-# fi
+NUM1=31
+NUM2=5
+if [ "$NUM1" -gt "$NUM2"]
+then
+    echo "$NUM1 is greater than $NUM2"
+else
+    echo "$NUM1 is less than $NUM2"
+fi
 
 # FILE CONDITIONS
 ##################
@@ -54,31 +54,66 @@ NAME="John"
 # -w    True if the file is writable
 # -x    True if the file is an executable
 ##################
-# FILE="test.txt"
-# if [ -e "$FILE" ]
-# then
-#     echo "$FILE exists"
-# else
-#     echo "$FILE does not exist"
-# fi
+FILE="test.txt"
+if [ -e "$FILE" ]
+then
+    echo "$FILE exists"
+else
+    echo "$FILE does not exist"
+fi
 
 # CASE STATEMENT
-# read -p "Are you 21 or over? Y/N " ANSWER
-# case "$ANSWER" in
-#   [yY] | [yY][eE][sS])
-#     echo "You can have a drink :)"
-#     ;;
-#   [nN] | [nN][oO])
-#     echo "Sorry, no drinking for you :("
-#     ;;
-#   *)
-#     echo "Please enter y/yes or n/no"
-#     ;;
-# esac
+read -p "Are you 21 or over? Y/N " ANSWER
+case "$ANSWER" in
+  [yY] | [yY][eE][sS])
+    echo "You can have a drink :)"
+    ;;
+  [nN] | [nN][oO])
+    echo "Sorry, no drinking for you :("
+    ;;
+  *)
+    echo "Please enter y/yes or n/no"
+    ;;
+esac
 
 # SIMPLE FOOR LOOP
-# NAMES="Brad Kevin Alice Mark"
-# for NAME in $NAMES
-#   do
-#     echo "Hello $NAME"
-# done
+NAMES="Brad Kevin Alice Mark"
+for NAME in $NAMES
+  do
+    echo "Hello $NAME"
+done
+
+# FOR LOOP TO RENAME FILES
+FILES=$(ls *.txt)
+NEW="new"
+for FILE in $FILES
+    do
+        echo "Renaming $FILE to new-$FILE"
+        mv $FILE $NEW-$FILE
+done
+
+# RENAME FILE IF EXIST
+FILE="1.txt"
+if [ -e "$FILE" ]
+then
+    echo "$FILE exists"
+    mv $FILE "new"-$FILE
+else
+    echo "$FILE does not exist"
+fi
+
+# WHILE LOOP - READ THROUGH A FILE LINE BY LINE
+LINE=1
+while read -r CURRENT_LINE
+    do
+        echo "$LINE: $CURRENT_LINE"
+        ((LINE++))
+done < "./test.txt"
+
+# FUNCTION WITH PARAMS
+function sayHello(){
+    echo "hello there, $1"
+    echo "Hope you're $2"
+}
+
+sayHello "Neil" "fine"
