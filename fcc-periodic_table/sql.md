@@ -56,3 +56,9 @@ NOT NULL;
 > INSERT INTO properties VALUES(9, 'nonmetal', 18.998, -220, -188.1, 2);
 > 
 > INSERT INTO properties VALUES(10, 'nonmetal', 20.18, -248.6, -246.1, 2);
+
+### dump psql table
+> pg_dump -cC --inserts -U freecodecamp periodic_table > periodic_table.sql
+
+################### github part ###################
+> mkdir periodic_table && cd periodic_table && git init && git checkout -b main && touch element.sh && chmod +x element.sh
