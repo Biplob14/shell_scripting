@@ -1,0 +1,1 @@
+> mkdir number_guessing_game && cd number_guessing_game && touch number_guess.sh && chmod +x number_guess.sh && git init && git checkout -b main && git add . && git commit -m "Initial commit"
